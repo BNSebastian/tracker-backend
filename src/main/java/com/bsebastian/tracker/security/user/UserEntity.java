@@ -1,7 +1,6 @@
 package com.bsebastian.tracker.security.user;
 
-import com.bsebastian.tracker.app.models.Activity;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.bsebastian.tracker.app.entities.Activity.model.Activity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -73,9 +72,9 @@ public class UserEntity implements UserDetails {
     }
 
     // app specific implementations
-
-    @OneToMany(mappedBy = "user",
-               cascade = CascadeType.ALL,
-               orphanRemoval = true)
-    private List<Activity> activities = new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "user",
+//               cascade = CascadeType.ALL,
+//               orphanRemoval = true)
+//    private List<Activity> activities = new ArrayList<>();
 }
