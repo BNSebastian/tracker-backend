@@ -1,8 +1,8 @@
 package com.bsebastian.tracker.security.authentication;
 
-import com.bsebastian.tracker.app.entities.Activity.model.Activity;
-import com.bsebastian.tracker.security.user.UserEntity;
-import com.bsebastian.tracker.security.user.UserEntityService;
+//import com.bsebastian.tracker.app.entities.Activity.model.Activity;
+//import com.bsebastian.tracker.security.user.UserEntity;
+//import com.bsebastian.tracker.security.user.UserEntityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthenticationController {
 
     private final AuthenticationService service;
-    private final UserEntityService userService;
+    //private final UserEntityService userService;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
