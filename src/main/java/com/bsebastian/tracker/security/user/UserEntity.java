@@ -1,6 +1,6 @@
 package com.bsebastian.tracker.security.user;
 
-import com.bsebastian.tracker.app.entities.Activity.model.Activity;
+import com.bsebastian.tracker.app.entities.models.Tracker;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +10,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,6 +34,11 @@ public class UserEntity implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    // app specific implementations
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "trackers_id")
+    private Tracker tracker;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -71,10 +75,5 @@ public class UserEntity implements UserDetails {
         return true;
     }
 
-    // app specific implementations
-//
-//    @OneToMany(mappedBy = "user",
-//               cascade = CascadeType.ALL,
-//               orphanRemoval = true)
-//    private List<Activity> activities = new ArrayList<>();
+
 }

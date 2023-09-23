@@ -1,7 +1,7 @@
 //package com.bsebastian.tracker.security.user;
 //
-//import com.bsebastian.tracker.app.entities.Activity.model.Activity;
-//import com.bsebastian.tracker.app.entities.Activity.repository.ActivityRepository;
+//import com.bsebastian.tracker.app.entities.Tracker.model.Activity;
+//import com.bsebastian.tracker.app.entities.Tracker.repository.ActivityRepository;
 //import org.springframework.stereotype.Service;
 //
 //import java.util.List;
