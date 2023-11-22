@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -34,11 +35,6 @@ public class UserEntity implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
-
-    // app specific implementations
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "trackers_id")
-    private Tracker tracker;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -75,5 +71,9 @@ public class UserEntity implements UserDetails {
         return true;
     }
 
+    // app specific implementations
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tracker")
+    private Tracker tracker;
 
 }

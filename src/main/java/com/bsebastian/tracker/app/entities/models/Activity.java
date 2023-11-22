@@ -10,6 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -26,7 +28,11 @@ public class Activity {
     @Size(min = 5, max = 255, message = "Name must be between 5 and 255 characters")
     private String name;
 
-    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "tracker_id")
+    private Tracker tracker;
+
+    //@JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "activity_types_id")
     private ActivityType activityType;
@@ -41,8 +47,4 @@ public class Activity {
             startedOn = LocalDateTime.now(); // Set startedOn to the current date and time if it's not already set
         }
     }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "trackers_id")
-    private Tracker tracker;
 }

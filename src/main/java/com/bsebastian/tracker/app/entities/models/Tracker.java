@@ -23,13 +23,13 @@ public class Tracker {
     private Long id;
 
     @NotNull(message = "Name cannot be null")
-    @Size(min = 5, max = 255, message = "Name must be between 5 and 255 characters")
+    @Size(min = 1, max = 255, message = "Name must be between 5 and 255 characters")
     private String name;
 
     @OneToMany(mappedBy = "tracker",
                cascade = CascadeType.ALL,
                orphanRemoval = true)
-    List<Activity> activities;
+    private List<Activity> activities;
 
     @OneToOne(mappedBy = "tracker")
     private UserEntity user;

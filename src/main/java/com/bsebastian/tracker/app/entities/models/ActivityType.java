@@ -23,9 +23,9 @@ public class ActivityType {
 
     private String name;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "activityType",
-               cascade = CascadeType.ALL,
-               orphanRemoval = true)
-    private List<Activity> usedIn = new ArrayList<>();
+//    @JsonManagedReference
+//    @OneToMany(mappedBy = "activityType",
+//               cascade = CascadeType.ALL,
+//               orphanRemoval = true)
+//    private List<Activity> usedIn = new ArrayList<>();
 }

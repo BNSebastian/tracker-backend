@@ -28,10 +28,12 @@ public class TrackerController {
         return new ResponseEntity<>(service.getById(id), HttpStatus.OK);
     }
 
-    @PostMapping("")
+    @PostMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<TrackerReadDto> create(@RequestBody TrackerCreateDto inputDto) {
-        return new ResponseEntity<>(service.create(inputDto), HttpStatus.CREATED);
+    public ResponseEntity<TrackerReadDto> create(
+            @RequestBody TrackerCreateDto inputDto,
+            @PathVariable("id") Long userId) {
+        return new ResponseEntity<>(service.create(inputDto, userId), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
@@ -46,5 +48,13 @@ public class TrackerController {
     public ResponseEntity<String> delete(@PathVariable("id") Long id) {
         service.delete(id);
         return new ResponseEntity<>("--- entry with id " + id + " was successfully deleted", HttpStatus.OK);
+    }
+
+    @PostMapping("/addActivity/{trackerId}/{activityId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<TrackerReadDto> addActivity(
+            @PathVariable("trackerId") Long trackerId,
+            @PathVariable("activityId") Long activityId) {
+        return new ResponseEntity<>(service.addActivity(trackerId, activityId), HttpStatus.CREATED);
     }
 }

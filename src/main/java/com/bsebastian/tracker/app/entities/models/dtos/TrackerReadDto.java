@@ -16,6 +16,6 @@ import java.util.List;
 public class TrackerReadDto {
     private Long id;
     private String name;
-    List<Activity> activities;
-    private UserEntity user;
+    // TODO: app specific properties
+    List<ActivityReadDto> activities;
 }

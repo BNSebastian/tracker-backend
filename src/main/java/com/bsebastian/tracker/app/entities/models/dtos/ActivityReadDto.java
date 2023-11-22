@@ -18,5 +18,4 @@ public class ActivityReadDto {
     private String name;
     private ActivityType activityType;
     private LocalDateTime startedOn;
-    private UserEntity user;
 }
