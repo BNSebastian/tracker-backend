@@ -16,5 +16,4 @@ public interface ActivityService {
     ActivityReadDto addActivityType(Long activityId, Long activityTypeId);
     ActivityReadDto setActivityStart(LocalDateTime date, Long id);
     ActivityReadDto setActivityEnd(LocalDateTime date, Long id);
-    int[] test = {1,2,3};
 }
