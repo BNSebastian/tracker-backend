@@ -1,8 +1,6 @@
 package com.bsebastian.tracker.security.authentication;
 
-import com.bsebastian.tracker.app.entities.models.dtos.ActivityReadDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
