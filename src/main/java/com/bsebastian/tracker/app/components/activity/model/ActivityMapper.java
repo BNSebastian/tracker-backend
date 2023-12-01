@@ -5,7 +5,7 @@ public class ActivityMapper {
         ActivityReadDto output = new ActivityReadDto();
         output.setId(input.getId());
         output.setName(input.getName());
-        output.setType(input.getType());
+        //output.setType(input.getType());
 //        output.setStartedOn(input.getStartedOn());
         return output;
     }
@@ -14,7 +14,7 @@ public class ActivityMapper {
         Activity output = new Activity();
         output.setId(input.getId());
         output.setName(input.getName());
-        output.setType(input.getType());
+        //output.setType(input.getType());
         return output;
     }
 }

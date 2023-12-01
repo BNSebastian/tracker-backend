@@ -1,7 +1,7 @@
 package com.bsebastian.tracker.security.model;
 
 import com.bsebastian.tracker.app.components.activity.model.Activity;
-import com.bsebastian.tracker.app.components.tracker.model.Tracker;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -73,11 +73,7 @@ public class UserEntity implements UserDetails {
         return true;
     }
 
-    // app specific implementations
-    @OneToOne(cascade = ALL)
-    @JoinColumn(name = "tracker")
-    private Tracker tracker;
-
+    //@JsonIgnore
     @OneToMany(cascade=ALL, mappedBy = "userEntity")
     public List<Activity> activities;
 }

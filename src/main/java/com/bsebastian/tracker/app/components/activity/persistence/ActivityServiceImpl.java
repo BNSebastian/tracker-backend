@@ -1,18 +1,17 @@
 package com.bsebastian.tracker.app.components.activity.persistence;
 
 import com.bsebastian.tracker.app.components.activity.model.Activity;
-import com.bsebastian.tracker.app.components.type.model.Type;
 import com.bsebastian.tracker.app.components.activity.model.ActivityCreateDto;
 import com.bsebastian.tracker.app.components.activity.model.ActivityReadDto;
 import com.bsebastian.tracker.app.components.activity.ActivityException;
-import com.bsebastian.tracker.app.components.type.TypeException;
 import com.bsebastian.tracker.app.components.activity.model.ActivityMapper;
+import com.bsebastian.tracker.app.components.type.model.Type;
+import com.bsebastian.tracker.app.components.type.model.TypeReadDto;
 import com.bsebastian.tracker.app.components.type.persistence.TypeRepository;
 import com.bsebastian.tracker.security.model.UserEntity;
 import com.bsebastian.tracker.security.persistence.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,21 +27,28 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
-    public ActivityReadDto create(ActivityCreateDto sentActivity, Long userId) {
-        UserEntity user = userRepository.findById(userId)
-                                        .orElseThrow();
+    public ActivityReadDto create(ActivityCreateDto sentActivity, Long userId, Long typeId) {
+        UserEntity user = userRepository.findById(userId).orElseThrow();
+        Type type = typeRepository.findById(typeId).orElseThrow();
 
         Activity newActivity = Activity.builder()
                 .name(sentActivity.getName())
                 .userEntity(user)
+                .type(type)
                 .build();
 
         Activity savedActivity = activityRepository.save(newActivity);
 
+        TypeReadDto typeReadDto = TypeReadDto.builder()
+                .id(type.getId())
+                .name(type.getName())
+                .build();
+
         return ActivityReadDto.builder()
                 .id(savedActivity.getId())
                 .name(savedActivity.getName())
-                .user(savedActivity.getUserEntity()).build();
+                .type(typeReadDto)
+                .build();
     }
 
     @Override
@@ -75,25 +81,25 @@ public class ActivityServiceImpl implements ActivityService {
         activityRepository.delete(Activity);
     }
 
-    @Override
-    public ActivityReadDto addType(Long activityId, Long activityTypeId) {
-        // Find the activity with the given ID, or throw an exception if not found
-        Activity activity = activityRepository.findById(activityId)
-                                              .orElseThrow(() -> new ActivityException("the entry with id: " + activityId + " wasn't found"));
-
-        // Find the activity type with the given ID, or throw an exception if not found
-        Type type = typeRepository.findById(activityTypeId)
-                                  .orElseThrow(() -> new TypeException("the entry with id: " + activityTypeId + " wasn't found"));
-
-        // Set the activity type for the activity
-        activity.setType(type);
-
-        // Save the updated activity in the database
-        Activity updatedActivity = activityRepository.save(activity);
-
-        // Convert the updated activity to a DTO (Data Transfer Object) for response
-        return ActivityMapper.mapToDto(updatedActivity);
-    }
+//    @Override
+//    public ActivityReadDto addType(Long activityId, Long activityTypeId) {
+//        // Find the activity with the given ID, or throw an exception if not found
+//        Activity activity = activityRepository.findById(activityId)
+//                                              .orElseThrow(() -> new ActivityException("the entry with id: " + activityId + " wasn't found"));
+//
+//        // Find the activity type with the given ID, or throw an exception if not found
+//        Type type = typeRepository.findById(activityTypeId)
+//                                  .orElseThrow(() -> new TypeException("the entry with id: " + activityTypeId + " wasn't found"));
+//
+//        // Set the activity type for the activity
+//        //activity.setType(type);
+//
+//        // Save the updated activity in the database
+//        Activity updatedActivity = activityRepository.save(activity);
+//
+//        // Convert the updated activity to a DTO (Data Transfer Object) for response
+//        return ActivityMapper.mapToDto(updatedActivity);
+//    }
 
 //    @Override
 //    public ActivityReadDto setActivityStart(LocalDateTime date, Long id) {

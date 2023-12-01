@@ -46,7 +46,6 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests(auth -> {
             //auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/pokemon")).hasRole("ADMIN");
             auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/auth/**")).permitAll();
-            auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/tracker/**")).authenticated();
             auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/activity/**")).authenticated();
             auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/type/**")).authenticated();
             //auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/**")).permitAll();

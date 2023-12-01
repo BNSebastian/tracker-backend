@@ -1,7 +1,6 @@
 package com.bsebastian.tracker.app.components.activity.model;
 
 import com.bsebastian.tracker.app.components.type.model.Type;
-import com.bsebastian.tracker.app.components.tracker.model.Tracker;
 import com.bsebastian.tracker.security.model.UserEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -29,17 +28,12 @@ public class Activity {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name="USERENTITY_ID", nullable=false)
+    @JoinColumn(name="users_id", nullable=false)
     public UserEntity userEntity;
 
-    //@JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "activity_types_id")
+    @JoinColumn(name = "types_id")
     private Type type;
-
-    @ManyToOne
-    @JoinColumn(name = "tracker_id")
-    private Tracker tracker;
 
 //    private LocalDateTime startedOn;
 //

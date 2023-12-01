@@ -28,13 +28,14 @@ public class ActivityController {
         return new ResponseEntity<>(activityService.getById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/{userId}/{typeId}")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<ActivityReadDto> create(
             @RequestBody ActivityCreateDto activity,
-            @PathVariable("id") Long userId
+            @PathVariable("userId") Long userId,
+            @PathVariable("typeId") Long typeId
     ) {
-        return new ResponseEntity<>(activityService.create(activity, userId), HttpStatus.CREATED);
+        return new ResponseEntity<>(activityService.create(activity, userId, typeId), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
@@ -46,16 +47,5 @@ public class ActivityController {
     public ResponseEntity<String> delete(@PathVariable("id") Long id) {
         activityService.delete(id);
         return new ResponseEntity<>("--- entry with id " + id + " was successfully deleted", HttpStatus.OK);
-    }
-
-    @PostMapping("/{activityId}/{activityTypeId}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<ActivityReadDto> addActivityType(
-            @PathVariable("activityId") Long activityId,
-            @PathVariable("activityTypeId") Long activityTypeId
-    ) {
-        System.out.println("adding activity type with id: " + activityTypeId + " to activity with id: " + activityId);
-        return new ResponseEntity<>(activityService.addType(activityId, activityTypeId),
-                                    HttpStatus.CREATED);
     }
 }
