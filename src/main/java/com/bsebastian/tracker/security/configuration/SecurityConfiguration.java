@@ -48,6 +48,7 @@ public class SecurityConfiguration {
             auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/auth/**")).permitAll();
             auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/tracker/**")).authenticated();
             auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/activity/**")).authenticated();
+            auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/type/**")).authenticated();
             //auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/**")).permitAll();
             //auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/pokemon")).authenticated();
             //auth.anyRequest().authenticated();
