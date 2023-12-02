@@ -37,7 +37,7 @@ public class Activity {
 
     private String description;
 
-//    private LocalDateTime startedOn;
+    private LocalDateTime startedOn;
 //
 //    private LocalDateTime endedOn;
 //

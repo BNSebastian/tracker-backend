@@ -34,23 +34,14 @@ public class ActivityServiceImpl implements ActivityService {
         Activity newActivity = Activity.builder()
                 .name(sentActivity.getName())
                 .description(sentActivity.getDescription())
+                .startedOn(sentActivity.getStartedOn())
                 .userEntity(user)
                 .type(type)
                 .build();
 
         Activity savedActivity = activityRepository.save(newActivity);
 
-        TypeReadDto typeReadDto = TypeReadDto.builder()
-                .id(type.getId())
-                .name(type.getName())
-                .build();
-
-        return ActivityReadDto.builder()
-                .id(savedActivity.getId())
-                .name(savedActivity.getName())
-                .description(savedActivity.getDescription())
-                .type(typeReadDto)
-                .build();
+        return ActivityMapper.mapToDto(savedActivity);
     }
 
     @Override

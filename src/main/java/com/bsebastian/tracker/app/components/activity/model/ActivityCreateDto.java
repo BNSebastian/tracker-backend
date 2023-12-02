@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data // lombok
 @AllArgsConstructor // lombok
 @NoArgsConstructor // lombok
@@ -12,4 +14,5 @@ import lombok.NoArgsConstructor;
 public class ActivityCreateDto {
     private String name;
     private String description;
+    private LocalDateTime startedOn;
 }
