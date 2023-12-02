@@ -19,6 +19,7 @@ public class ActivityServiceImpl implements ActivityService {
     private final ActivityRepository activityRepository;
     private final TypeRepository typeRepository;
     private final UserRepository userRepository;
+
     public ActivityServiceImpl(ActivityRepository repository, TypeRepository typeRepository, UserRepository userRepository) {
         this.activityRepository = repository;
         this.typeRepository = typeRepository;
@@ -88,42 +89,17 @@ public class ActivityServiceImpl implements ActivityService {
         activityRepository.delete(Activity);
     }
 
-//    @Override
-//    public ActivityReadDto addType(Long activityId, Long activityTypeId) {
-//        // Find the activity with the given ID, or throw an exception if not found
-//        Activity activity = activityRepository.findById(activityId)
-//                                              .orElseThrow(() -> new ActivityException("the entry with id: " + activityId + " wasn't found"));
-//
-//        // Find the activity type with the given ID, or throw an exception if not found
-//        Type type = typeRepository.findById(activityTypeId)
-//                                  .orElseThrow(() -> new TypeException("the entry with id: " + activityTypeId + " wasn't found"));
-//
-//        // Set the activity type for the activity
-//        //activity.setType(type);
-//
-//        // Save the updated activity in the database
-//        Activity updatedActivity = activityRepository.save(activity);
-//
-//        // Convert the updated activity to a DTO (Data Transfer Object) for response
-//        return ActivityMapper.mapToDto(updatedActivity);
-//    }
-
-//    @Override
-//    public ActivityReadDto setActivityStart(LocalDateTime date, Long id) {
-//        Activity activity = activityRepository.findById(id)
-//                                              .orElseThrow(() -> new ActivityException("the entry with id: " + id + " wasn't found"));
-//        activity.setStartedOn(date);
-//        activityRepository.save(activity);
-//        return ActivityMapper.mapToDto(activity);
-//    }
-
-//    @Override
-//    public ActivityReadDto setActivityEnd(LocalDateTime date, Long id) {
-//        Activity activity = activityRepository.findById(id)
-//                                              .orElseThrow(() -> new ActivityException("the entry with id: " + id + " wasn't found"));
-//        activity.setEndedOn(date);
-//        activityRepository.save(activity);
-//        return ActivityMapper.mapToDto(activity);
-//    }
-
+    @Override
+    public Long getTotalTime(Long userId) {
+        Long total = 0L;
+        List<Activity> activities = activityRepository.findAll();
+        for (Activity current : activities) {
+            if (current.getUserEntity().getId().equals(userId)) {
+                total += current.getTimeElapsedInMinutes();
+            } else {
+                throw new RuntimeException("User not found in activities");
+            }
+        }
+        return total;
+    }
 }

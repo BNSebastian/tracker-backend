@@ -49,4 +49,9 @@ public class ActivityController {
         activityService.delete(id);
         return new ResponseEntity<>("--- entry with id " + id + " was successfully deleted", HttpStatus.OK);
     }
+
+    @GetMapping("/total/{userId}")
+    public ResponseEntity<Long> getElapsedTime(@PathVariable("userId") Long userId) {
+        return new ResponseEntity<>(activityService.getTotalTime(userId), HttpStatus.OK);
+    }
 }
