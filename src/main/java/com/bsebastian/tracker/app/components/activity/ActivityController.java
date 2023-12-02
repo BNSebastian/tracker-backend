@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -51,7 +52,12 @@ public class ActivityController {
     }
 
     @GetMapping("/total/{userId}")
-    public ResponseEntity<Long> getElapsedTime(@PathVariable("userId") Long userId) {
+    public ResponseEntity<Long> getTotalTime(@PathVariable("userId") Long userId) {
         return new ResponseEntity<>(activityService.getTotalTime(userId), HttpStatus.OK);
+    }
+
+    @GetMapping("/partial/{userId}")
+    public ResponseEntity<HashMap<String, Long>> getTime(@PathVariable("userId") Long userId) {
+        return new ResponseEntity<>(activityService.getTime(userId), HttpStatus.OK);
     }
 }

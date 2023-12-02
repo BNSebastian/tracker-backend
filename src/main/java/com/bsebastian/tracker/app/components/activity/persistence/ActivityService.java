@@ -4,6 +4,7 @@ import com.bsebastian.tracker.app.components.activity.model.ActivityCreateDto;
 import com.bsebastian.tracker.app.components.activity.model.ActivityReadDto;
 import com.bsebastian.tracker.app.components.activity.model.ActivityUpdateDto;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface ActivityService {
@@ -13,4 +14,5 @@ public interface ActivityService {
     ActivityReadDto update(ActivityUpdateDto entry);
     void delete(Long id);
     Long getTotalTime(Long userId);
+    HashMap<String, Long> getTime(Long userId);
 }

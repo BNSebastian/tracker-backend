@@ -11,6 +11,7 @@ import com.bsebastian.tracker.security.persistence.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -91,15 +92,30 @@ public class ActivityServiceImpl implements ActivityService {
 
     @Override
     public Long getTotalTime(Long userId) {
+        UserEntity user = userRepository.findById(userId).orElseThrow();
+        List<Activity> activities = user.getActivities();
         Long total = 0L;
-        List<Activity> activities = activityRepository.findAll();
         for (Activity current : activities) {
-            if (current.getUserEntity().getId().equals(userId)) {
-                total += current.getTimeElapsedInMinutes();
-            } else {
-                throw new RuntimeException("User not found in activities");
-            }
+            total += current.getTimeElapsedInMinutes();
         }
         return total;
+    }
+
+    @Override
+    public HashMap<String, Long> getTime(Long userId) {
+        UserEntity user = userRepository.findById(userId).orElseThrow();
+        List<Activity> activities = user.getActivities();
+        HashMap<String, Long> map = new HashMap<>();
+        for (Activity current : activities) {
+            String key = current.getType().getName();
+            Long value = current.getTimeElapsedInMinutes();
+            if (map.containsKey(key)) {
+                Long existingValue = map.get(key);
+                map.put(key, existingValue + value);
+            } else {
+                map.put(key, value);
+            }
+        }
+        return map;
     }
 }
