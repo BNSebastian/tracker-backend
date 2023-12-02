@@ -1,20 +1,13 @@
 package com.bsebastian.tracker.app.components.activity.model;
 
-public class ActivityMapper {
-    public static ActivityReadDto mapToDto(Activity input) {
-        ActivityReadDto output = new ActivityReadDto();
-        output.setId(input.getId());
-        output.setName(input.getName());
-        //output.setType(input.getType());
-//        output.setStartedOn(input.getStartedOn());
-        return output;
-    }
+import com.bsebastian.tracker.app.components.type.model.TypeMapper;
 
-    public static Activity mapToEntity(ActivityReadDto input) {
-        Activity output = new Activity();
-        output.setId(input.getId());
-        output.setName(input.getName());
-        //output.setType(input.getType());
-        return output;
+public class ActivityMapper {
+    public static ActivityReadDto mapToDto(Activity activity) {
+        return ActivityReadDto.builder()
+                .id(activity.getId())
+                .name(activity.getName())
+                .type(TypeMapper.mapToDto(activity.getType()))
+                .build();
     }
 }
