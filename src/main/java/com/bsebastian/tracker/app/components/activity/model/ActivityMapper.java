@@ -11,6 +11,7 @@ public class ActivityMapper {
                 .type(TypeMapper.mapToDto(activity.getType()))
                 .startedOn(activity.getStartedOn())
                 .endedOn(activity.getEndedOn())
+                .timeElapsedInMinutes(activity.getTimeElapsedInMinutes())
                 .build();
     }
 }

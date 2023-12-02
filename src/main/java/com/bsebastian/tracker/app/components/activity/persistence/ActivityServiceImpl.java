@@ -1,17 +1,16 @@
 package com.bsebastian.tracker.app.components.activity.persistence;
 
-import com.bsebastian.tracker.app.components.activity.model.Activity;
-import com.bsebastian.tracker.app.components.activity.model.ActivityCreateDto;
-import com.bsebastian.tracker.app.components.activity.model.ActivityReadDto;
+import com.bsebastian.tracker.app.components.activity.model.*;
 import com.bsebastian.tracker.app.components.activity.ActivityException;
-import com.bsebastian.tracker.app.components.activity.model.ActivityMapper;
 import com.bsebastian.tracker.app.components.type.model.Type;
+import com.bsebastian.tracker.app.components.type.model.TypeMapper;
 import com.bsebastian.tracker.app.components.type.model.TypeReadDto;
 import com.bsebastian.tracker.app.components.type.persistence.TypeRepository;
 import com.bsebastian.tracker.security.model.UserEntity;
 import com.bsebastian.tracker.security.persistence.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,11 +30,16 @@ public class ActivityServiceImpl implements ActivityService {
         UserEntity user = userRepository.findById(userId).orElseThrow();
         Type type = typeRepository.findById(typeId).orElseThrow();
 
+        Long timeElapsedInMinutes = Duration
+                .between(sentActivity.getStartedOn(), sentActivity.getEndedOn())
+                .toMinutes();
+
         Activity newActivity = Activity.builder()
                 .name(sentActivity.getName())
                 .description(sentActivity.getDescription())
                 .startedOn(sentActivity.getStartedOn())
                 .endedOn(sentActivity.getEndedOn())
+                .timeElapsedInMinutes(timeElapsedInMinutes)
                 .userEntity(user)
                 .type(type)
                 .build();
@@ -61,10 +65,21 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
-    public ActivityReadDto update(ActivityReadDto entryDto, Long id) {
-        Activity Activity = activityRepository.findById(id).orElseThrow(() -> new ActivityException("the entry with id: " + id + " wasn't found"));
-        Activity.setName(entryDto.getName());
-        Activity updatedActivity = activityRepository.save(Activity);
+    public ActivityReadDto update(ActivityUpdateDto input) {
+        Activity activity = activityRepository.findById(input.getId()).orElseThrow();
+        Type type = typeRepository.findById(input.getType().getId()).orElseThrow();
+
+        activity.setName(input.getName());
+        activity.setDescription(input.getDescription());
+        activity.setType(type);
+        activity.setStartedOn(input.getStartedOn());
+        activity.setEndedOn(input.getEndedOn());
+        activity.setTimeElapsedInMinutes(
+                Duration.between(input.getStartedOn(), input.getEndedOn())
+                        .toMinutes()
+        );
+
+        Activity updatedActivity = activityRepository.save(activity);
         return ActivityMapper.mapToDto(updatedActivity);
     }
 

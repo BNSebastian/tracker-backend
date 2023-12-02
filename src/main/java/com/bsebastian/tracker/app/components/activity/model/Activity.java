@@ -40,4 +40,6 @@ public class Activity {
     private LocalDateTime startedOn;
 
     private LocalDateTime endedOn;
+
+    private Long timeElapsedInMinutes;
 }

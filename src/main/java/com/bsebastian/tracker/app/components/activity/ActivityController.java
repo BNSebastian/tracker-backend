@@ -2,6 +2,7 @@ package com.bsebastian.tracker.app.components.activity;
 
 import com.bsebastian.tracker.app.components.activity.model.ActivityCreateDto;
 import com.bsebastian.tracker.app.components.activity.model.ActivityReadDto;
+import com.bsebastian.tracker.app.components.activity.model.ActivityUpdateDto;
 import com.bsebastian.tracker.app.components.activity.persistence.ActivityService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,9 +39,9 @@ public class ActivityController {
         return new ResponseEntity<>(activityService.create(activity, userId, typeId), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ActivityReadDto> update(@RequestBody ActivityReadDto inputDto, @PathVariable("id") Long id) {
-        return new ResponseEntity<>(activityService.update(inputDto, id), HttpStatus.OK);
+    @PutMapping("")
+    public ResponseEntity<ActivityReadDto> update(@RequestBody ActivityUpdateDto activity) {
+        return new ResponseEntity<>(activityService.update(activity), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

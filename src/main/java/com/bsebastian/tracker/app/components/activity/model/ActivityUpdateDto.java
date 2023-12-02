@@ -12,12 +12,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor // lombok
 @NoArgsConstructor // lombok
 @Builder // needed for tests
-public class ActivityReadDto {
+public class ActivityUpdateDto {
     private Long id;
     private String name;
     private String description;
     private TypeReadDto type;
     private LocalDateTime startedOn;
     private LocalDateTime endedOn;
-    private Long timeElapsedInMinutes;
 }
