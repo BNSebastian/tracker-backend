@@ -33,6 +33,7 @@ public class ActivityServiceImpl implements ActivityService {
 
         Activity newActivity = Activity.builder()
                 .name(sentActivity.getName())
+                .description(sentActivity.getDescription())
                 .userEntity(user)
                 .type(type)
                 .build();
@@ -47,6 +48,7 @@ public class ActivityServiceImpl implements ActivityService {
         return ActivityReadDto.builder()
                 .id(savedActivity.getId())
                 .name(savedActivity.getName())
+                .description(savedActivity.getDescription())
                 .type(typeReadDto)
                 .build();
     }

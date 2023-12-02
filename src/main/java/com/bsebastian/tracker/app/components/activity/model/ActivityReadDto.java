@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 public class ActivityReadDto {
     private Long id;
     private String name;
+    private String description;
     private TypeReadDto type;
 //    private LocalDateTime startedOn;
 }

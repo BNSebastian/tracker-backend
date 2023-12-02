@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 @Builder // needed for tests
 public class ActivityCreateDto {
     private String name;
+    private String description;
 }

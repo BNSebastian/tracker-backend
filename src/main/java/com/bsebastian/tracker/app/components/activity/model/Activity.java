@@ -35,6 +35,8 @@ public class Activity {
     @JoinColumn(name = "types_id")
     private Type type;
 
+    private String description;
+
 //    private LocalDateTime startedOn;
 //
 //    private LocalDateTime endedOn;

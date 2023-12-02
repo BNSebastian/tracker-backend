@@ -7,6 +7,7 @@ public class ActivityMapper {
         return ActivityReadDto.builder()
                 .id(activity.getId())
                 .name(activity.getName())
+                .description(activity.getDescription())
                 .type(TypeMapper.mapToDto(activity.getType()))
                 .build();
     }
