@@ -16,7 +16,6 @@ public class ActivityUpdateDto {
     private Long id;
     private String name;
     private String description;
-    private TypeReadDto type;
     private LocalDateTime startedOn;
     private LocalDateTime endedOn;
 }

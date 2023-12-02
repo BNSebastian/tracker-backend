@@ -67,11 +67,9 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public ActivityReadDto update(ActivityUpdateDto input) {
         Activity activity = activityRepository.findById(input.getId()).orElseThrow();
-        Type type = typeRepository.findById(input.getType().getId()).orElseThrow();
 
         activity.setName(input.getName());
         activity.setDescription(input.getDescription());
-        activity.setType(type);
         activity.setStartedOn(input.getStartedOn());
         activity.setEndedOn(input.getEndedOn());
         activity.setTimeElapsedInMinutes(
