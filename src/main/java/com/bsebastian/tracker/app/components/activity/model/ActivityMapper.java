@@ -10,6 +10,7 @@ public class ActivityMapper {
                 .description(activity.getDescription())
                 .type(TypeMapper.mapToDto(activity.getType()))
                 .startedOn(activity.getStartedOn())
+                .endedOn(activity.getEndedOn())
                 .build();
     }
 }

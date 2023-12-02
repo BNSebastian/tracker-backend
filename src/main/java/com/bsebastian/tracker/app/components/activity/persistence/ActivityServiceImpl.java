@@ -35,6 +35,7 @@ public class ActivityServiceImpl implements ActivityService {
                 .name(sentActivity.getName())
                 .description(sentActivity.getDescription())
                 .startedOn(sentActivity.getStartedOn())
+                .endedOn(sentActivity.getEndedOn())
                 .userEntity(user)
                 .type(type)
                 .build();

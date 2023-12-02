@@ -15,4 +15,5 @@ public class ActivityCreateDto {
     private String name;
     private String description;
     private LocalDateTime startedOn;
+    private LocalDateTime endedOn;
 }

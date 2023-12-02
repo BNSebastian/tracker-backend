@@ -38,13 +38,6 @@ public class Activity {
     private String description;
 
     private LocalDateTime startedOn;
-//
-//    private LocalDateTime endedOn;
-//
-//    @PrePersist
-//    protected void onCreate() {
-//        if (startedOn == null) {
-//            startedOn = LocalDateTime.now(); // Set startedOn to the current date and time if it's not already set
-//        }
-//    }
+
+    private LocalDateTime endedOn;
 }

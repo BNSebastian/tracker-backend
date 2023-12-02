@@ -18,4 +18,5 @@ public class ActivityReadDto {
     private String description;
     private TypeReadDto type;
     private LocalDateTime startedOn;
+    private LocalDateTime endedOn;
 }
