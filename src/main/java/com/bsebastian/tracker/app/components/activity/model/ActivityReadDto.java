@@ -1,8 +1,6 @@
 package com.bsebastian.tracker.app.components.activity.model;
 
-import com.bsebastian.tracker.app.components.type.model.Type;
 import com.bsebastian.tracker.app.components.type.model.TypeReadDto;
-import com.bsebastian.tracker.security.model.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
