@@ -11,6 +11,7 @@ import com.bsebastian.tracker.security.persistence.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -118,4 +119,73 @@ public class ActivityServiceImpl implements ActivityService {
         }
         return map;
     }
+
+    @Override
+    public List<HashMap<String, Object>> getTimePerMonths(Long userId) {
+        UserEntity user = userRepository.findById(userId).orElseThrow();
+        List<Activity> activities = user.getActivities();
+        List<HashMap<String, Object>> resultList = new ArrayList<>();
+
+        for (Activity current : activities) {
+            String activityType = current.getType().getName();
+            String month = capitalizeFirstLetter(current.getStartedOn().getMonth().toString().toLowerCase()); // Capitalizing the first letter of the month
+            int year = current.getStartedOn().getYear();
+
+            // Check if there's an existing entry for the same month and year
+            boolean found = false;
+            for (HashMap<String, Object> entry : resultList) {
+                if ((int) entry.get("year") == year && entry.get("month").equals(month)) {
+                    @SuppressWarnings("unchecked")
+                    List<HashMap<String, Object>> activitiesList = (List<HashMap<String, Object>>) entry.get("activities");
+
+                    // Check if the activity already exists in the activities list for the current month
+                    boolean activityFound = false;
+                    for (HashMap<String, Object> activity : activitiesList) {
+                        if (activity.get("name").equals(activityType)) {
+                            activity.put("time", (Long) activity.get("time") + current.getTimeElapsedInMinutes());
+                            activityFound = true;
+                            break;
+                        }
+                    }
+
+                    // If the activity doesn't exist, add it to the activities list
+                    if (!activityFound) {
+                        HashMap<String, Object> newActivity = new HashMap<>();
+                        newActivity.put("name", activityType);
+                        newActivity.put("time", current.getTimeElapsedInMinutes());
+                        activitiesList.add(newActivity);
+                    }
+
+                    found = true;
+                    break;
+                }
+            }
+
+            // If no entry exists, create a new one
+            if (!found) {
+                HashMap<String, Object> newEntry = new HashMap<>();
+                newEntry.put("year", year);
+                newEntry.put("month", month);
+                List<HashMap<String, Object>> activitiesList = new ArrayList<>();
+                HashMap<String, Object> newActivity = new HashMap<>();
+                newActivity.put("name", activityType);
+                newActivity.put("time", current.getTimeElapsedInMinutes());
+                activitiesList.add(newActivity);
+                newEntry.put("activities", activitiesList);
+                resultList.add(newEntry);
+            }
+        }
+
+        return resultList;
+    }
+
+    public String capitalizeFirstLetter(String input) {
+        if (input == null || input.isEmpty()) {
+            return input; // Handle null or empty string
+        }
+        return input.substring(0, 1).toUpperCase() + input.substring(1);
+    }
+
+
+
 }

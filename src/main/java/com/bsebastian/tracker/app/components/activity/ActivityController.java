@@ -51,13 +51,18 @@ public class ActivityController {
         return new ResponseEntity<>("--- entry with id " + id + " was successfully deleted", HttpStatus.OK);
     }
 
-    @GetMapping("/total/{userId}")
+    @GetMapping("/time/{userId}")
     public ResponseEntity<Long> getTotalTime(@PathVariable("userId") Long userId) {
         return new ResponseEntity<>(activityService.getTotalTime(userId), HttpStatus.OK);
     }
 
-    @GetMapping("/partial/{userId}")
+    @GetMapping("/time/type/{userId}")
     public ResponseEntity<HashMap<String, Long>> getTime(@PathVariable("userId") Long userId) {
         return new ResponseEntity<>(activityService.getTime(userId), HttpStatus.OK);
+    }
+
+    @GetMapping("/time/month&type/{userId}")
+    public ResponseEntity<List<HashMap<String, Object>>> getTimePerMonths(@PathVariable("userId") Long userId) {
+        return new ResponseEntity<>(activityService.getTimePerMonths(userId), HttpStatus.OK);
     }
 }

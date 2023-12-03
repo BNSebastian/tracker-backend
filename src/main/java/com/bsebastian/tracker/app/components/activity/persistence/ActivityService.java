@@ -15,4 +15,5 @@ public interface ActivityService {
     void delete(Long id);
     Long getTotalTime(Long userId);
     HashMap<String, Long> getTime(Long userId);
+    List<HashMap<String, Object>> getTimePerMonths(Long userId);
 }
