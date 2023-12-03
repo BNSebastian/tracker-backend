@@ -4,10 +4,14 @@ import com.bsebastian.tracker.app.components.activity.model.ActivityCreateDto;
 import com.bsebastian.tracker.app.components.activity.model.ActivityReadDto;
 import com.bsebastian.tracker.app.components.activity.model.ActivityUpdateDto;
 import com.bsebastian.tracker.app.components.activity.persistence.ActivityService;
+import com.bsebastian.tracker.security.model.UserEntity;
+import com.bsebastian.tracker.security.persistence.UserService;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,9 +19,11 @@ import java.util.List;
 @RequestMapping("/api/activity")
 public class ActivityController {
     private final ActivityService activityService;
+    private final UserService userService;
 
-    public ActivityController(ActivityService service) {
+    public ActivityController(ActivityService service, UserService userService) {
         this.activityService = service;
+        this.userService = userService;
     }
 
     @GetMapping("")
@@ -52,17 +58,29 @@ public class ActivityController {
     }
 
     @GetMapping("/time/{userId}")
-    public ResponseEntity<Long> getTotalTime(@PathVariable("userId") Long userId) {
-        return new ResponseEntity<>(activityService.getTotalTime(userId), HttpStatus.OK);
-    }
-
-    @GetMapping("/time/type/{userId}")
-    public ResponseEntity<HashMap<String, Long>> getTime(@PathVariable("userId") Long userId) {
+    public ResponseEntity<List<HashMap<String, Object>>> getTime(@PathVariable("userId") Long userId) {
         return new ResponseEntity<>(activityService.getTime(userId), HttpStatus.OK);
     }
 
-    @GetMapping("/time/month&type/{userId}")
-    public ResponseEntity<List<HashMap<String, Object>>> getTimePerMonths(@PathVariable("userId") Long userId) {
-        return new ResponseEntity<>(activityService.getTimePerMonths(userId), HttpStatus.OK);
+    @GetMapping("/ADMIN/time/{userId}")
+    public ResponseEntity<List<List<HashMap<String, Object>>>> getTimeForAll(@PathVariable("userId") Long userId) {
+        if (!userService.checkIfAdmin(userId)) {
+            System.out.println("user is admin: " + userService.checkIfAdmin(userId));
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        List<UserEntity> users = userService.getAll().orElseThrow(); // Fetch all users
+
+        List<List<HashMap<String, Object>>> resultList = new ArrayList<>();
+
+        for (UserEntity user : users) {
+            Long currentUserId = user.getId();
+            List<HashMap<String, Object>> userTimeData = activityService.getTime(currentUserId);
+
+            // Add user time data to the result list
+            resultList.add(userTimeData);
+        }
+
+        return new ResponseEntity<>(resultList, HttpStatus.OK);
     }
 }

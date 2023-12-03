@@ -3,10 +3,7 @@ package com.bsebastian.tracker.security.model;
 import com.bsebastian.tracker.app.components.activity.model.Activity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,6 +32,7 @@ public class UserEntity implements UserDetails {
 
     private String password;
 
+    @Getter
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -76,4 +74,5 @@ public class UserEntity implements UserDetails {
     //@JsonIgnore
     @OneToMany(cascade=ALL, mappedBy = "userEntity")
     public List<Activity> activities;
+
 }

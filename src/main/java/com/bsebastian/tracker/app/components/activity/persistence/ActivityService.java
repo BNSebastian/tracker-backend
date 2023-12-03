@@ -13,7 +13,5 @@ public interface ActivityService {
     ActivityReadDto getById(Long id);
     ActivityReadDto update(ActivityUpdateDto entry);
     void delete(Long id);
-    Long getTotalTime(Long userId);
-    HashMap<String, Long> getTime(Long userId);
-    List<HashMap<String, Object>> getTimePerMonths(Long userId);
+    List<HashMap<String, Object>> getTime(Long userId);
 }

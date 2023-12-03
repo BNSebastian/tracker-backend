@@ -92,36 +92,7 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
-    public Long getTotalTime(Long userId) {
-        UserEntity user = userRepository.findById(userId).orElseThrow();
-        List<Activity> activities = user.getActivities();
-        Long total = 0L;
-        for (Activity current : activities) {
-            total += current.getTimeElapsedInMinutes();
-        }
-        return total;
-    }
-
-    @Override
-    public HashMap<String, Long> getTime(Long userId) {
-        UserEntity user = userRepository.findById(userId).orElseThrow();
-        List<Activity> activities = user.getActivities();
-        HashMap<String, Long> map = new HashMap<>();
-        for (Activity current : activities) {
-            String key = current.getType().getName();
-            Long value = current.getTimeElapsedInMinutes();
-            if (map.containsKey(key)) {
-                Long existingValue = map.get(key);
-                map.put(key, existingValue + value);
-            } else {
-                map.put(key, value);
-            }
-        }
-        return map;
-    }
-
-    @Override
-    public List<HashMap<String, Object>> getTimePerMonths(Long userId) {
+    public List<HashMap<String, Object>> getTime(Long userId) {
         UserEntity user = userRepository.findById(userId).orElseThrow();
         List<Activity> activities = user.getActivities();
         List<HashMap<String, Object>> resultList = new ArrayList<>();
