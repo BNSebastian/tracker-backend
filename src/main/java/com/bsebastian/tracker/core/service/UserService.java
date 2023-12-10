@@ -1,6 +1,6 @@
-package com.bsebastian.tracker.security.persistence;
+package com.bsebastian.tracker.core.service;
 
-import com.bsebastian.tracker.security.model.UserEntity;
+import com.bsebastian.tracker.core.model.UserEntity;
 
 import java.util.List;
 import java.util.Optional;

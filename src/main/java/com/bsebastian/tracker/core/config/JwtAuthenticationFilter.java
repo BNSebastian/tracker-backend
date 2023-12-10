@@ -1,5 +1,6 @@
-package com.bsebastian.tracker.security.configuration;
+package com.bsebastian.tracker.core.config;
 
+import com.bsebastian.tracker.core.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

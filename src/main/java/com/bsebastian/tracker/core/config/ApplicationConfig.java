@@ -1,6 +1,6 @@
-package com.bsebastian.tracker.security.configuration;
+package com.bsebastian.tracker.core.config;
 
-import com.bsebastian.tracker.security.persistence.UserRepository;
+import com.bsebastian.tracker.core.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

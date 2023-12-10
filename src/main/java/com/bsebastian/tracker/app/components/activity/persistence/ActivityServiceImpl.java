@@ -3,11 +3,9 @@ package com.bsebastian.tracker.app.components.activity.persistence;
 import com.bsebastian.tracker.app.components.activity.model.*;
 import com.bsebastian.tracker.app.components.activity.ActivityException;
 import com.bsebastian.tracker.app.components.type.model.Type;
-import com.bsebastian.tracker.app.components.type.model.TypeMapper;
-import com.bsebastian.tracker.app.components.type.model.TypeReadDto;
 import com.bsebastian.tracker.app.components.type.persistence.TypeRepository;
-import com.bsebastian.tracker.security.model.UserEntity;
-import com.bsebastian.tracker.security.persistence.UserRepository;
+import com.bsebastian.tracker.core.model.UserEntity;
+import com.bsebastian.tracker.core.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;

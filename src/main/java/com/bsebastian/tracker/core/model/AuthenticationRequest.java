@@ -1,4 +1,4 @@
-package com.bsebastian.tracker.security.authentication;
+package com.bsebastian.tracker.core.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,9 +1,11 @@
-package com.bsebastian.tracker.security.authentication;
+package com.bsebastian.tracker.core.service;
 
-import com.bsebastian.tracker.security.configuration.JwtService;
-import com.bsebastian.tracker.security.model.Role;
-import com.bsebastian.tracker.security.model.UserEntity;
-import com.bsebastian.tracker.security.persistence.UserRepository;
+import com.bsebastian.tracker.core.model.AuthenticationRequest;
+import com.bsebastian.tracker.core.model.AuthenticationResponse;
+import com.bsebastian.tracker.core.model.RegisterRequest;
+import com.bsebastian.tracker.core.model.Role;
+import com.bsebastian.tracker.core.model.UserEntity;
+import com.bsebastian.tracker.core.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -66,6 +68,4 @@ public class AuthenticationService {
                                      .token(jwtToken)
                                      .build();
     }
-
-
 }

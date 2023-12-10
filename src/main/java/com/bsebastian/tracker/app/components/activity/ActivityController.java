@@ -4,14 +4,13 @@ import com.bsebastian.tracker.app.components.activity.model.ActivityCreateDto;
 import com.bsebastian.tracker.app.components.activity.model.ActivityReadDto;
 import com.bsebastian.tracker.app.components.activity.model.ActivityUpdateDto;
 import com.bsebastian.tracker.app.components.activity.persistence.ActivityService;
-import com.bsebastian.tracker.security.model.UserEntity;
-import com.bsebastian.tracker.security.persistence.UserService;
-import org.springframework.context.annotation.Bean;
+import com.bsebastian.tracker.core.service.JwtService;
+import com.bsebastian.tracker.core.model.UserEntity;
+import com.bsebastian.tracker.core.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,10 +19,12 @@ import java.util.List;
 public class ActivityController {
     private final ActivityService activityService;
     private final UserService userService;
+    private final JwtService jwtService;
 
-    public ActivityController(ActivityService service, UserService userService) {
+    public ActivityController(ActivityService service, UserService userService, JwtService jwtService) {
         this.activityService = service;
         this.userService = userService;
+        this.jwtService = jwtService;
     }
 
     @GetMapping("")
@@ -63,7 +64,7 @@ public class ActivityController {
     }
 
     @GetMapping("/ADMIN/time/{userId}")
-    public ResponseEntity<List<List<HashMap<String, Object>>>> getTimeForAll(@PathVariable("userId") Long userId) {
+    public ResponseEntity<HashMap<String, List<HashMap<String, Object>>>> getTimeForAll(@PathVariable("userId") Long userId) {
         if (!userService.checkIfAdmin(userId)) {
             System.out.println("user is admin: " + userService.checkIfAdmin(userId));
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -71,16 +72,28 @@ public class ActivityController {
 
         List<UserEntity> users = userService.getAll().orElseThrow(); // Fetch all users
 
-        List<List<HashMap<String, Object>>> resultList = new ArrayList<>();
+//        List<List<HashMap<String, Object>>> resultList = new ArrayList<>();
+
+//        for (UserEntity user : users) {
+//            Long currentUserId = user.getId();
+//            List<HashMap<String, Object>> userTimeData = activityService.getTime(currentUserId);
+//
+//            // Add user time data to the result list
+//            resultList.add(userTimeData);
+//        }
+
+
+        HashMap<String, List<HashMap<String, Object>>> result = new HashMap<>();
 
         for (UserEntity user : users) {
             Long currentUserId = user.getId();
             List<HashMap<String, Object>> userTimeData = activityService.getTime(currentUserId);
 
-            // Add user time data to the result list
-            resultList.add(userTimeData);
-        }
+            String userName = user.getFirstname() + " " + user.getLastname();
 
-        return new ResponseEntity<>(resultList, HttpStatus.OK);
+            // Add user time data to the result map with the user's name as the key
+            result.put(userName, userTimeData);
+        }
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

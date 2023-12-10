@@ -1,7 +1,7 @@
 package com.bsebastian.tracker.app.components.activity.model;
 
 import com.bsebastian.tracker.app.components.type.model.Type;
-import com.bsebastian.tracker.security.model.UserEntity;
+import com.bsebastian.tracker.core.model.UserEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

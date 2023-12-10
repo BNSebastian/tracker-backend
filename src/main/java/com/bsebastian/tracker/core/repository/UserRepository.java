@@ -1,6 +1,6 @@
-package com.bsebastian.tracker.security.persistence;
+package com.bsebastian.tracker.core.repository;
 
-import com.bsebastian.tracker.security.model.UserEntity;
+import com.bsebastian.tracker.core.model.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

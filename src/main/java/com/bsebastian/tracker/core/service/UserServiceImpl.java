@@ -1,16 +1,15 @@
-package com.bsebastian.tracker.security.persistence;
+package com.bsebastian.tracker.core.service;
 
-import com.bsebastian.tracker.security.model.Role;
-import com.bsebastian.tracker.security.model.UserEntity;
+import com.bsebastian.tracker.core.model.UserEntity;
+import com.bsebastian.tracker.core.repository.UserRepository;
+import com.bsebastian.tracker.core.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-import static com.bsebastian.tracker.security.model.Role.ADMIN;
-
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {
@@ -40,6 +39,7 @@ public class UserServiceImpl implements UserService{
     public Boolean checkIfAdmin(Long id) {
         UserEntity currentUser = userRepository.findById(id).orElseThrow();
         String role = currentUser.getRole().toString();
+        System.out.println("--- current user role is " + role);
         return role.equals("ADMIN");
     }
 }
