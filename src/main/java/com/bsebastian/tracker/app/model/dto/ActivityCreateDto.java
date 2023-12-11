@@ -1,6 +1,5 @@
-package com.bsebastian.tracker.app.components.activity.model;
+package com.bsebastian.tracker.app.model.dto;
 
-import com.bsebastian.tracker.app.components.type.model.TypeReadDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,8 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor // lombok
 @NoArgsConstructor // lombok
 @Builder // needed for tests
-public class ActivityUpdateDto {
-    private Long id;
+public class ActivityCreateDto {
     private String name;
     private String description;
     private LocalDateTime startedOn;

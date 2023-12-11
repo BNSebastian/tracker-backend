@@ -1,6 +1,6 @@
-package com.bsebastian.tracker.app.components.type.model;
+package com.bsebastian.tracker.app.model;
 
-import com.bsebastian.tracker.app.components.activity.model.Activity;
+import com.bsebastian.tracker.app.model.Activity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

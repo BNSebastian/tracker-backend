@@ -1,4 +1,4 @@
-package com.bsebastian.tracker.app.components.activity;
+package com.bsebastian.tracker.app.exceptions;
 
 public class ActivityException extends RuntimeException {
     private static final long serialVersionUID = 1;

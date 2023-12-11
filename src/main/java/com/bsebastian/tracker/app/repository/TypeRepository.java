@@ -1,6 +1,6 @@
-package com.bsebastian.tracker.app.components.type.persistence;
+package com.bsebastian.tracker.app.repository;
 
-import com.bsebastian.tracker.app.components.type.model.Type;
+import com.bsebastian.tracker.app.model.Type;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TypeRepository extends JpaRepository<Type, Long> {  }

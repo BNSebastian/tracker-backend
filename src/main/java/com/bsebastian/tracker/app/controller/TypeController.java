@@ -1,9 +1,9 @@
-package com.bsebastian.tracker.app.components.type;
+package com.bsebastian.tracker.app.controller;
 
-import com.bsebastian.tracker.app.components.type.model.TypeCreateDto;
-import com.bsebastian.tracker.app.components.type.model.TypeReadDto;
+import com.bsebastian.tracker.app.model.dto.TypeCreateDto;
+import com.bsebastian.tracker.app.model.dto.TypeReadDto;
 
-import com.bsebastian.tracker.app.components.type.persistence.TypeService;
+import com.bsebastian.tracker.app.service.TypeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

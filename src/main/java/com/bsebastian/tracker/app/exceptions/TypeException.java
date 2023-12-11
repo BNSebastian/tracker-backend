@@ -1,4 +1,4 @@
-package com.bsebastian.tracker.app.components.type;
+package com.bsebastian.tracker.app.exceptions;
 
 public class TypeException extends RuntimeException {
     private static final long serialVersionUID = 1;

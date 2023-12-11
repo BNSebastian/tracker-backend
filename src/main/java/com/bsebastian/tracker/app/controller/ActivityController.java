@@ -1,9 +1,9 @@
-package com.bsebastian.tracker.app.components.activity;
+package com.bsebastian.tracker.app.controller;
 
-import com.bsebastian.tracker.app.components.activity.model.ActivityCreateDto;
-import com.bsebastian.tracker.app.components.activity.model.ActivityReadDto;
-import com.bsebastian.tracker.app.components.activity.model.ActivityUpdateDto;
-import com.bsebastian.tracker.app.components.activity.persistence.ActivityService;
+import com.bsebastian.tracker.app.model.dto.ActivityCreateDto;
+import com.bsebastian.tracker.app.model.dto.ActivityReadDto;
+import com.bsebastian.tracker.app.model.dto.ActivityUpdateDto;
+import com.bsebastian.tracker.app.service.ActivityService;
 import com.bsebastian.tracker.core.service.JwtService;
 import com.bsebastian.tracker.core.model.UserEntity;
 import com.bsebastian.tracker.core.service.UserService;

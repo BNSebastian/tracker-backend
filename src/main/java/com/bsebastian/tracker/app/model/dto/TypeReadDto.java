@@ -1,4 +1,4 @@
-package com.bsebastian.tracker.app.components.type.model;
+package com.bsebastian.tracker.app.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

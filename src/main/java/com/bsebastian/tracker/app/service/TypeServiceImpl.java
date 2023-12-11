@@ -1,10 +1,11 @@
-package com.bsebastian.tracker.app.components.type.persistence;
+package com.bsebastian.tracker.app.service;
 
-import com.bsebastian.tracker.app.components.type.model.Type;
-import com.bsebastian.tracker.app.components.type.model.TypeCreateDto;
-import com.bsebastian.tracker.app.components.type.model.TypeReadDto;
-import com.bsebastian.tracker.app.components.type.TypeException;
-import com.bsebastian.tracker.app.components.type.model.TypeMapper;
+import com.bsebastian.tracker.app.model.Type;
+import com.bsebastian.tracker.app.model.dto.TypeCreateDto;
+import com.bsebastian.tracker.app.model.dto.TypeReadDto;
+import com.bsebastian.tracker.app.repository.TypeRepository;
+import com.bsebastian.tracker.app.exceptions.TypeException;
+import com.bsebastian.tracker.app.model.mapper.TypeMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,7 +1,7 @@
-package com.bsebastian.tracker.app.components.type.persistence;
+package com.bsebastian.tracker.app.service;
 
-import com.bsebastian.tracker.app.components.type.model.TypeCreateDto;
-import com.bsebastian.tracker.app.components.type.model.TypeReadDto;
+import com.bsebastian.tracker.app.model.dto.TypeCreateDto;
+import com.bsebastian.tracker.app.model.dto.TypeReadDto;
 
 import java.util.List;
 

@@ -1,7 +1,6 @@
 package com.bsebastian.tracker.core.model;
 
-import com.bsebastian.tracker.app.components.activity.model.Activity;
-import com.bsebastian.tracker.core.model.Role;
+import com.bsebastian.tracker.app.model.Activity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

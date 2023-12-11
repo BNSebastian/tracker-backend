@@ -1,4 +1,7 @@
-package com.bsebastian.tracker.app.components.type.model;
+package com.bsebastian.tracker.app.model.mapper;
+
+import com.bsebastian.tracker.app.model.Type;
+import com.bsebastian.tracker.app.model.dto.TypeReadDto;
 
 public class TypeMapper {
     public static TypeReadDto mapToDto(Type type) {

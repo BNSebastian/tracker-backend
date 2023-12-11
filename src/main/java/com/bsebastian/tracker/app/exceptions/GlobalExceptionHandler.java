@@ -1,6 +1,5 @@
 package com.bsebastian.tracker.app.exceptions;
 
-import com.bsebastian.tracker.app.components.type.TypeException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

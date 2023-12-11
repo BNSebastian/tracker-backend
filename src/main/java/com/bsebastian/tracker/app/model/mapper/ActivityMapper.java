@@ -1,6 +1,7 @@
-package com.bsebastian.tracker.app.components.activity.model;
+package com.bsebastian.tracker.app.model.mapper;
 
-import com.bsebastian.tracker.app.components.type.model.TypeMapper;
+import com.bsebastian.tracker.app.model.dto.ActivityReadDto;
+import com.bsebastian.tracker.app.model.Activity;
 
 public class ActivityMapper {
     public static ActivityReadDto mapToDto(Activity activity) {

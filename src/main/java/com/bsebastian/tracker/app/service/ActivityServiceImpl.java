@@ -1,9 +1,14 @@
-package com.bsebastian.tracker.app.components.activity.persistence;
+package com.bsebastian.tracker.app.service;
 
-import com.bsebastian.tracker.app.components.activity.model.*;
-import com.bsebastian.tracker.app.components.activity.ActivityException;
-import com.bsebastian.tracker.app.components.type.model.Type;
-import com.bsebastian.tracker.app.components.type.persistence.TypeRepository;
+import com.bsebastian.tracker.app.exceptions.ActivityException;
+import com.bsebastian.tracker.app.model.Type;
+import com.bsebastian.tracker.app.repository.TypeRepository;
+import com.bsebastian.tracker.app.model.Activity;
+import com.bsebastian.tracker.app.model.dto.ActivityCreateDto;
+import com.bsebastian.tracker.app.model.dto.ActivityReadDto;
+import com.bsebastian.tracker.app.model.dto.ActivityUpdateDto;
+import com.bsebastian.tracker.app.model.mapper.ActivityMapper;
+import com.bsebastian.tracker.app.repository.ActivityRepository;
 import com.bsebastian.tracker.core.model.UserEntity;
 import com.bsebastian.tracker.core.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -36,14 +41,14 @@ public class ActivityServiceImpl implements ActivityService {
                 .toMinutes();
 
         Activity newActivity = Activity.builder()
-                .name(sentActivity.getName())
-                .description(sentActivity.getDescription())
-                .startedOn(sentActivity.getStartedOn())
-                .endedOn(sentActivity.getEndedOn())
-                .timeElapsedInMinutes(timeElapsedInMinutes)
-                .userEntity(user)
-                .type(type)
-                .build();
+                                       .name(sentActivity.getName())
+                                       .description(sentActivity.getDescription())
+                                       .startedOn(sentActivity.getStartedOn())
+                                       .endedOn(sentActivity.getEndedOn())
+                                       .timeElapsedInMinutes(timeElapsedInMinutes)
+                                       .userEntity(user)
+                                       .type(type)
+                                       .build();
 
         Activity savedActivity = activityRepository.save(newActivity);
 

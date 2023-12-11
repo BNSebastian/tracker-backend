@@ -1,8 +1,8 @@
-package com.bsebastian.tracker.app.components.activity.persistence;
+package com.bsebastian.tracker.app.service;
 
-import com.bsebastian.tracker.app.components.activity.model.ActivityCreateDto;
-import com.bsebastian.tracker.app.components.activity.model.ActivityReadDto;
-import com.bsebastian.tracker.app.components.activity.model.ActivityUpdateDto;
+import com.bsebastian.tracker.app.model.dto.ActivityCreateDto;
+import com.bsebastian.tracker.app.model.dto.ActivityReadDto;
+import com.bsebastian.tracker.app.model.dto.ActivityUpdateDto;
 
 import java.util.HashMap;
 import java.util.List;
