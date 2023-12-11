@@ -1,4 +1,4 @@
-package com.bsebastian.tracker.core.config;
+package com.bsebastian.tracker.core.util;
 
 import com.bsebastian.tracker.core.service.JwtService;
 import jakarta.servlet.FilterChain;

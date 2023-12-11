@@ -1,4 +1,4 @@
-package com.bsebastian.tracker.core.util;
+package com.bsebastian.tracker.shared;
 
 import com.bsebastian.tracker.core.model.Role;
 import com.bsebastian.tracker.core.model.UserEntity;

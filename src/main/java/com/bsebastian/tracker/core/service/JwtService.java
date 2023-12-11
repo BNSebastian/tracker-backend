@@ -1,6 +1,6 @@
 package com.bsebastian.tracker.core.service;
 
-import com.bsebastian.tracker.core.util.Constants;
+import com.bsebastian.tracker.shared.Constants;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

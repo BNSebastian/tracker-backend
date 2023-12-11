@@ -1,4 +1,4 @@
-package com.bsebastian.tracker.core.util;
+package com.bsebastian.tracker.shared;
 
 public class Constants {
     // SECURITY

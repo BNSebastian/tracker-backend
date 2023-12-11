@@ -1,5 +1,6 @@
 package com.bsebastian.tracker.core.config;
 
+import com.bsebastian.tracker.core.util.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
