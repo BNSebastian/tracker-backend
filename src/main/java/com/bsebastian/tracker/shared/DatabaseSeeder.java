@@ -1,8 +1,10 @@
 package com.bsebastian.tracker.shared;
 
-import com.bsebastian.tracker.core.model.Role;
-import com.bsebastian.tracker.core.model.UserEntity;
-import com.bsebastian.tracker.core.repository.UserRepository;
+import com.bsebastian.tracker.logic.model.Type;
+import com.bsebastian.tracker.logic.repository.TypeRepository;
+import com.bsebastian.tracker.security.model.Role;
+import com.bsebastian.tracker.security.model.UserEntity;
+import com.bsebastian.tracker.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -13,10 +15,11 @@ import java.util.List;
 public class DatabaseSeeder implements CommandLineRunner {
 
     private final UserRepository userRepository;
-
+    private final TypeRepository typeRepository;
     @Autowired
-    public DatabaseSeeder(UserRepository userRepository) {
+    public DatabaseSeeder(UserRepository userRepository, TypeRepository typeRepository) {
         this.userRepository = userRepository;
+        this.typeRepository = typeRepository;
     }
 
     @Override
@@ -33,5 +36,17 @@ public class DatabaseSeeder implements CommandLineRunner {
         admin.setRole(Role.ADMIN);
 
         userRepository.saveAll(List.of(admin));
+
+        Type type1 = new Type();
+        type1.setName("working");
+
+        Type type2 = new Type();
+        type2.setName("traveling");
+
+        Type type3 = new Type();
+        type3.setName("eating");
+
+        typeRepository.saveAll(List.of(type1, type2, type3));
+
     }
 }
