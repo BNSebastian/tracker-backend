@@ -13,6 +13,7 @@ public class ActivityMapper {
                 .startedOn(activity.getStartedOn())
                 .endedOn(activity.getEndedOn())
                 .timeElapsedInMinutes(activity.getTimeElapsedInMinutes())
+                .user(activity.getUserEntity().getEmail())
                 .build();
     }
 }

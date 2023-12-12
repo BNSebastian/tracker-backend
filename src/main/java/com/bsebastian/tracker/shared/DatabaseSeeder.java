@@ -30,8 +30,8 @@ public class DatabaseSeeder implements CommandLineRunner {
     private void seedUsers() {
         UserEntity admin = new UserEntity();
         admin.setFirstname("seb");
-        admin.setLastname("seb");
-        admin.setEmail("seb");
+        admin.setLastname("cheneb");
+        admin.setEmail("seb@cheneb.com");
         admin.setPassword("$2a$10$r9ueA6pt.1oLoJRAoOXTYuG7akG9gpCDkKyNHdab2MbF3U8cOdjy2");
         admin.setRole(Role.ADMIN);
 

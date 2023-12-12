@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class TimeController {
     }
 
     @GetMapping("/ADMIN/{userId}")
-    public ResponseEntity<HashMap<String, List<HashMap<String, Object>>>> getTimeForAll(@PathVariable("userId") Long userId) {
+    public ResponseEntity<List<HashMap<String, Object>>> getTimeForAll(@PathVariable("userId") Long userId) {
         if (!userService.checkIfAdmin(userId)) {
             System.out.println("user is admin: " + userService.checkIfAdmin(userId));
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -38,17 +39,17 @@ public class TimeController {
 
         List<UserEntity> users = userService.getAll().orElseThrow(); // Fetch all users
 
-        HashMap<String, List<HashMap<String, Object>>> result = new HashMap<>();
-
-        for (UserEntity user : users) {
+        List<HashMap<String, Object>> output = new ArrayList<>();
+        for (var user: users) {
+            String userName = user.getEmail();
             Long currentUserId = user.getId();
             List<HashMap<String, Object>> userTimeData = activityService.getTime(currentUserId);
 
-            String userName = user.getFirstname() + " " + user.getLastname();
-
-            // Add user time data to the result map with the user's name as the key
-            result.put(userName, userTimeData);
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("user", userName);
+            map.put("details", userTimeData);
+            output.add(map);
         }
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(output, HttpStatus.OK);
     }
 }

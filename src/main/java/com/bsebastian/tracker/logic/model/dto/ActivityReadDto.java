@@ -19,4 +19,5 @@ public class ActivityReadDto {
     private LocalDateTime startedOn;
     private LocalDateTime endedOn;
     private Long timeElapsedInMinutes;
+    private String user;
 }
