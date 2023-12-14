@@ -1,5 +1,6 @@
 package com.bsebastian.tracker.logic.model;
 
+import com.bsebastian.tracker.logic.model.Activity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

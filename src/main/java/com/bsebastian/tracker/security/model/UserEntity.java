@@ -70,7 +70,6 @@ public class UserEntity implements UserDetails {
         return true;
     }
 
-    //@JsonIgnore
     @OneToMany(cascade=ALL, mappedBy = "userEntity")
     public List<Activity> activities;
 

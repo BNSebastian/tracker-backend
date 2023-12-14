@@ -25,8 +25,8 @@ public class ActivityServiceImpl implements ActivityService {
     private final TypeRepository typeRepository;
     private final UserRepository userRepository;
 
-    public ActivityServiceImpl(ActivityRepository repository, TypeRepository typeRepository, UserRepository userRepository) {
-        this.activityRepository = repository;
+    public ActivityServiceImpl(ActivityRepository activityRepository, TypeRepository typeRepository, UserRepository userRepository) {
+        this.activityRepository = activityRepository;
         this.typeRepository = typeRepository;
         this.userRepository = userRepository;
     }
@@ -35,7 +35,6 @@ public class ActivityServiceImpl implements ActivityService {
     public ActivityReadDto create(ActivityCreateDto sentActivity, Long userId, Long typeId) {
         UserEntity user = userRepository.findById(userId).orElseThrow();
         Type type = typeRepository.findById(typeId).orElseThrow();
-
         Long timeElapsedInMinutes = Duration
                 .between(sentActivity.getStartedOn(), sentActivity.getEndedOn())
                 .toMinutes();
